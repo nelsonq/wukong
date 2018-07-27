@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0
+                      http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
+	<mirrors>
+		<mirror>
+			<!-- You will need to change the URL here to your corporate Maven repository which mirrors the internet. -->
+			<id>internet-mirror</id>
+			<!-- <url>http://nexus-cs.elasticpath.net/content/groups/enablement-central</url>
+			-->
+                        <url>http://maven.elasticpath.com/nexus/content/groups/psi</url>
+                        <mirrorOf>external:*</mirrorOf>
+		</mirror>
+	</mirrors>
+
+	<activeProfiles>
+		<activeProfile>ep-developer</activeProfile>
+		<activeProfile>tomcat-developer</activeProfile>
+		<activeProfile>mysql-dev-db</activeProfile>
+		<!-- <activeProfile>oracle-dev-db</activeProfile> -->
+		<activeProfile>with-oauth2-resource</activeProfile>
+		<activeProfile>activemq-dev-jms</activeProfile>
+		<activeProfile>allow-snapshots-from-central</activeProfile>
+		<activeProfile>disable-licensing-check</activeProfile>
+	</activeProfiles>
+
+	<profiles>
+		<!-- MySQL developer configuration -->
+		<!-- This overrides the mysql-dev-db profile in elasticpath grandparent POM -->
+		<profile>
+			<id>mysql-dev-db</id>
+			<properties>
+				<data.population.environment>local</data.population.environment>
+				<epdb.schemaname>COMMERCEDB</epdb.schemaname>
+                                <epdb.username>ep</epdb.username>
+				<epdb.password>ep</epdb.password>
+				<epdb.reset_user>root</epdb.reset_user>
+				<epdb.reset_password>root</epdb.reset_password>
+			</properties>
+		</profile>
+
+		<!-- Oracle XE developer configuration -->
+		<!-- This overrides the oracle-dev-db profile in elasticpath grandparent POM -->
+		<profile>
+			<id>oracle-dev-db</id>
+			<properties>
+				<data.population.environment>local</data.population.environment>
+				<epdb.schemaname>COMMERCEDB</epdb.schemaname>
+                <epdb.databasename>XE</epdb.databasename>
+                <epdb.username>${epdb.schemaname}</epdb.username>
+                <epdb.password>ep</epdb.password>
+				<epdb.reset_user>sys as sysdba</epdb.reset_user>
+				<epdb.reset_password>YOUR_SYS_PASSWORD</epdb.reset_password>
+				<epdb.default.tablespace>users</epdb.default.tablespace>
+                <epdb.temporary.tablespace>temp</epdb.temporary.tablespace>
+			</properties>
+		</profile>
+
+		<!-- Local developer configuration -->
+		<!-- This overrides the ep-developer profile in elasticpath parent POM -->
+		<profile>
+			<id>ep-developer</id>
+			<properties>
+				<ep.local.asset.path>YOUR_PROJECT_DIR/extensions/assets/ext-assets/src/main/assets</ep.local.asset.path>
+				<ep.smtp.host>YOUR_SMTP_HOST</ep.smtp.host>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>disable-licensing-check</id>
+			<properties>
+				<licensing.skip>true</licensing.skip>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>allow-snapshots-from-central</id>
+			<repositories>
+				<repository>
+					<!-- This is the recommended way of pointing central to our local repository. -->
+					<id>central</id>
+					<url>http://repo1.maven.org/?url-overridden-by-mirrorOf-above</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+
+			<pluginRepositories>
+				<pluginRepository>
+					<id>central</id>
+					<!-- This is the recommended way of pointing central to our local repository. -->
+					<url>http://repo1.maven.org/?url-overridden-by-mirrorOf-above</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+</settings>
