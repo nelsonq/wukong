@@ -8,10 +8,10 @@ for maven based project delivery and internal product developemnt, developers ma
 > sharing data source is also risky and painful. <br/>
 
 to resolve that, typically, maven provides option to determine the settings.xml and local maven repository location. but that will be anony on typing each command with that option always. 
-> manual configuration on running maven is painful.
+> manual configuration to run maven is painful.
 
 docker also offers the availability to start container against different ports for differnt applications. but it is also anony to specify them again and again. 
-> manual configuration on running docker is also painful.
+> manual configuration to run docker is painful, too.
 
 the idea way is to make all options could be automated discovered to utilize the maven and docker accross different configuration, as well as to make life easy in switching to new ad hoc task or back to in process project. and also able to retain all the data states.
 
