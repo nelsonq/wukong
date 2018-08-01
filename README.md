@@ -1,6 +1,6 @@
 My EP Development Environment Accelerator Toolkit
 ======
-Adopting Convention over Configuration 
+Adopting Convention ~over~ is Configuration 
 ------
 # Background
 for maven based project delivery and internal product developemnt, developers may often switch among different projects/branches, each project may even needs different maven and jdk version, which cost time and may involve mistakes. each project/branch may point to an individual data source.
