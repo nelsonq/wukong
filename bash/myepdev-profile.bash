@@ -14,12 +14,23 @@ export MAVEN_OPTS_352=$MAVEN_OPTS_339
 export MAVEN_OPTS_354=$MAVEN_OPTS_352
 
 # JAVA_HOME configuration
+os="$(uname -s)"
+if [ "$os" = "Darwin" ];then
 export JAVA_HOME_8U66=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/
 export JAVA_HOME_8U161=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/
 export JAVA_HOME_8U144=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/
 export JAVA_HOME_7U51=/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/
 export JAVA_HOME_7U79=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/
 export JAVA_HOME_7U80=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/
+else
+export JAVA_HOME_8U66=~/Work/apphome/jdk1.8.0_66
+export JAVA_HOME_8U161=~/Work/apphome/jdk1.8.0_161
+export JAVA_HOME_8U144=~/Work/apphome/jdk1.8.0_144
+export JAVA_HOME_7U51=~/Work/apphome/jdk1.7.0_51
+export JAVA_HOME_7U79=~/Work/apphome/jdk1.7.0_79
+export JAVA_HOME_7U80=~/Work/apphome/jdk1.7.0_80
+
+fi
 export JAVA_HOME_7=$JAVA_HOME_7U79
 export JAVA_HOME_8=$JAVA_HOME_8U144
 
