@@ -19,6 +19,8 @@ alias mydocker-stop-mysql='mydockerenv && docker ps -a | grep 0.0.0.0:$MY_DOCKER
 alias mydocker-start-mysql='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-remove-mysql='mydockerenv && docker ps -a | grep docker$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker rm {}'
 alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
+# remove all of the dangling images, which contains <none>.
+alias mydocker-cleanup-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
 
 # start tomcat server
 alias mymvn-run-tomcat7='mymvn clean tomcat7:run-war'
