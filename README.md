@@ -1,4 +1,4 @@
-My EP Development Environment Accelerator Toolkit
+WuKong - An Alternative Way to Accelerate EP Development Environment Setup and Switching
 ======
 Adopting Convention ~over~ is Configuration 
 ------
