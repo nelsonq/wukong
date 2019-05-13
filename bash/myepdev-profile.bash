@@ -8,8 +8,11 @@ export M2_HOME_339=$MAVEN_INST_ROOT/apache-maven-3.3.9
 export M2_HOME_305=$MAVEN_INST_ROOT/apache-maven-3.0.5
 
 # MAVEN_OPTS configuration
-export MAVEN_OPTS_305='-Xmx1024m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true -ea'
-export MAVEN_OPTS_339='-Xmx2048m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true'
+# remove yourkit for troubleshooting
+export YOURKIT_OPTS=""
+export MAVEN_OPTS_BASE="$YOURKIT_OPTS"
+export MAVEN_OPTS_305="-Xmx1024m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true -ea $MAVEN_OPTS_BASE"
+export MAVEN_OPTS_339="-Xmx2048m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true $MAVEN_OPTS_BASE"
 export MAVEN_OPTS_352=$MAVEN_OPTS_339
 export MAVEN_OPTS_354=$MAVEN_OPTS_352
 
@@ -36,8 +39,10 @@ export JAVA_HOME_8=$JAVA_HOME_8U144
 
 # JAVA_OPTS configuration
 # ===============================
-export JAVA_OPTS_8='-Xmx1024m -Dsun.lang.ClassLoader.allowArraySyntax=true'
-export JAVA_OPTS_7='-Xmx1024m -XX:MaxPermSize=512m -Dsun.lang.ClassLoader.allowArraySyntax=true'
+export JAVA_OPTS_BASE="$YOURKIT_OPTS"
+export JAVA_OPTS_BASE="$JAVA_OPTS_BASE -Dsun.lang.ClassLoader.allowArraySyntax=true"
+export JAVA_OPTS_8="$JAVA_OPTS_BASE -Xmx1024m"
+export JAVA_OPTS_7="$JAVA_OPTS_BASE -Xmx1024m -XX:MaxPermSize=512m"
 # ==============================
 
 # EP release mapping of each configuration
