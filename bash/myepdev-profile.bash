@@ -19,6 +19,8 @@ if [ "$os" = "Darwin" ];then
 export JAVA_HOME_8U66=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home/
 export JAVA_HOME_8U161=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home/
 export JAVA_HOME_8U144=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/
+# NOTE: Zulu JDK now.
+export JAVA_HOME_8U212=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/
 export JAVA_HOME_7U51=/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/
 export JAVA_HOME_7U79=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home/
 export JAVA_HOME_7U80=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/
@@ -31,8 +33,10 @@ export JAVA_HOME_7U79=~/Work/apphome/jdk1.7.0_79
 export JAVA_HOME_7U80=~/Work/apphome/jdk1.7.0_80
 
 fi
+
+# UPDATE default JAVA_HOME per java major release.
 export JAVA_HOME_7=$JAVA_HOME_7U79
-export JAVA_HOME_8=$JAVA_HOME_8U144
+export JAVA_HOME_8=$JAVA_HOME_8U212
 
 # JAVA_OPTS configuration
 # ===============================
@@ -51,7 +55,8 @@ export JAVA_HOME_EP71=$JAVA_HOME_8U144;export M2_HOME_EP71=$M2_HOME_339;export J
 export JAVA_HOME_EP72=$JAVA_HOME_8U144;export M2_HOME_EP72=$M2_HOME_339;export JAVA_OPTS_EP72=$JAVA_OPTS_8;export MAVEN_OPTS_EP72=$MAVEN_OPTS_339
 export JAVA_HOME_EP73=$JAVA_HOME_8U144;export M2_HOME_EP73=$M2_HOME_352;export JAVA_OPTS_EP73=$JAVA_OPTS_8;export MAVEN_OPTS_EP73=$MAVEN_OPTS_352
 export JAVA_HOME_EP74=$JAVA_HOME_8U144;export M2_HOME_EP74=$M2_HOME_352;export JAVA_OPTS_EP74=$JAVA_OPTS_8;export MAVEN_OPTS_EP74=$MAVEN_OPTS_352
-export JAVA_HOME_EP7x=$JAVA_HOME_8U144;export M2_HOME_EP7x=$M2_HOME_354;export JAVA_OPTS_EP7x=$JAVA_OPTS_8;export MAVEN_OPTS_EP7x=$MAVEN_OPTS_352
+export JAVA_HOME_EP75=$JAVA_HOME_8U212;export M2_HOME_EP75=$M2_HOME_352;export JAVA_OPTS_EP75=$JAVA_OPTS_8;export MAVEN_OPTS_EP75=$MAVEN_OPTS_352
+export JAVA_HOME_EP7x=$JAVA_HOME_8;export M2_HOME_EP7x=$M2_HOME_354;export JAVA_OPTS_EP7x=$JAVA_OPTS_8;export MAVEN_OPTS_EP7x=$MAVEN_OPTS_352
 
 # export default configuration
 export JAVA_HOME=$JAVA_HOME_EP7x
