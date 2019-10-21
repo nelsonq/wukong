@@ -5,7 +5,7 @@ _mydocker_run_mysql_func (){
    DOCKER_IMAGE=$1
    DOCKER_CONTAINER_NAME=$3
    echo "container running : from $DOCKER_IMAGE"
-   docker run --name $DOCKER_CONTAINER_NAME -e MYSQL_ROOT_PASSWORD=root -p $DOCKER_HOST_PORT:3306 -d $DOCKER_IMAGE
+   docker run --name $DOCKER_CONTAINER_NAME -e TZ=America/Vancouver -e MYSQL_ROOT_PASSWORD=root -p $DOCKER_HOST_PORT:3306 -d $DOCKER_IMAGE
 }
 
 _mydocker_stop_mysql_func (){
