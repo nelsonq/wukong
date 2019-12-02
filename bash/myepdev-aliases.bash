@@ -43,11 +43,13 @@ alias myepmvn-run-search8='mymvn-run-tomcat8 -f extensions/search/ext-search-web
 alias myepmvn-run-amq8='mymvn-run-tomcat8 -f extensions/activemq-broker/pom.xml'
 alias myepmvn-run-cm8='mymvn-run-tomcat8 -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml -Dorg.eclipse.rap.rwt.enableUITests=true'
 alias myepmvn-run-int8='mymvn-run-tomcat8 -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-run-batch8='mymvn-run-tomcat8 -f extensions/batch/ext-batch-webapp/pom.xml'
 
 alias myepmvn-run-cortex8-debug='mymvn-run-tomcat8-debug -f extensions/cortex/ext-cortex-webapp/pom.xml'
 alias myepmvn-run-search8-debug='mymvn-run-tomcat8-debug -f extensions/search/ext-search-webapp/pom.xml'
 alias myepmvn-run-cm8-debug='mymvn-run-tomcat8-debug -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml -Dorg.eclipse.rap.rwt.enableUITests=true'
 alias myepmvn-run-int8-debug='mymvn-run-tomcat8-debug -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-run-batch8-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-batch-webapp/pom.xml'
 
 # maven clean and build
 alias mymvn-ciskip='mymvn clean install -DskipAllTests'
