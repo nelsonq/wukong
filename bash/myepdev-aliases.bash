@@ -12,15 +12,21 @@ _mydocker_stop_mysql_func (){
    echo "container stopping : $DOCKER_CONTAINER_EP_MYSQL_NAME"
    docker stop $1 && docker rm $1
 }
-alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker\([0-9]\{5\}\).*|\1|p'"'"')&&export MY_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/\([^/]*\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_REPO=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_\([0-9a-z]\{1,20\}\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_TAG=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_[0-9a-z]\{1,20\}_\([0-9a-z\.]\{1,20\}\).*|\1|p'"'"')'
+_mydocker_create_mysql_snapshot(){
+   echo "create snapshot of mysql container: $1"
+   docker commit $1 $2:snapshot_$3
+}
+alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker\([0-9]\{5\}\).*|\1|p'"'"')&&export MY_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/\([^/]*\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_REPO=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_\([0-9a-z]\{1,20\}\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_TAG=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_[0-9a-z]\{1,20\}_\([-0-9a-zA-Z_\.]\{1,50\}\).*|\1|p'"'"')'
 alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/mysql:5.6 $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-stop-mysql='mydockerenv && docker ps -a | grep 0.0.0.0:$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker stop {}' 
 alias mydocker-start-mysql='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
+alias mydocker-reload-mysql='mydocker-stop-mysql && mydocker-remove-mysql && mydocker-start-mysql'
 alias mydocker-remove-mysql='mydockerenv && docker ps -a | grep docker$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker rm {}'
 alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
 # remove all of the dangling images, which contains <none>.
 alias mydocker-cleanup-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
+alias mydocker-create-mysql-snapshot='mydockerenv && _mydocker_create_mysql_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/mysql'
 
 # start tomcat server
 alias mymvn-run-tomcat7='mymvn clean tomcat7:run-war'
