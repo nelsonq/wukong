@@ -1,16 +1,16 @@
 WuKong - An Alternative Way to Accelerate EP Development Environment Setup and Switching
 ======
-Adopting Convention ~over~ is Configuration 
+Adopting Convention ~over~ is Configuration
 ------
 # Background
 for maven based project delivery and internal product developemnt, developers may often switch among different projects/branches, each project may even needs different maven and jdk version, which cost time and may involve mistakes. each project/branch may point to an individual data source.
 > sharing local maven repository across different projects is risky <br/>
 > sharing data source is also risky and painful. <br/>
 
-to resolve that, typically, maven provides option to determine the settings.xml and local maven repository location. but that will be anony on typing each command with that option always. 
+to resolve that, typically, maven provides option to determine the settings.xml and local maven repository location. but that will be anony on typing each command with that option always.
 > manual configuration to run maven is painful.
 
-docker also offers the availability to start container against different ports for differnt applications. but it is also anony to specify them again and again. 
+docker also offers the availability to start container against different ports for differnt applications. but it is also anony to specify them again and again.
 > manual configuration to run docker is painful, too.
 
 the idea way is to make all options could be automated discovered to utilize the maven and docker accross different configuration, as well as to make life easy in switching to new ad hoc task or back to in process project. and also able to retain all the data states.
@@ -36,12 +36,12 @@ once enter the folder, the predefined aliases provided by this accelerator proje
 when developers swtich to different project folder, the shell will always inspect and discover the current working directory and run proper configuration against current folder name.
 
 # Who Should Use It
-for those who are anony for switching development context, especially ep developers work for project delivery and product contribution, need to across different maven version/jdk version/branches. 
+for those who are anony for switching development context, especially ep developers work for project delivery and product contribution, need to across different maven version/jdk version/branches.
 
 the typical development lifesycle will be
 1. get a jira task
 2. create a project folder against the jira task
-3. import project into intellj or other ide, specify the project `.m2` folder when import module. 
+3. import project into intellj or other ide, specify the project `.m2` folder when import module.
 4. develop and deliver it, build, populate db
 5. retain this folder and switch to another ad-hoc task ( repeat same steps from beginning )
 6. go back to this task, start up mysql container, continue and done the job
@@ -58,7 +58,7 @@ run `git clone git@github.com:nelsonq/myepdev-env-acc.git` will establish folder
 * install all maven version used by ep proejcts under same folder. e.g. `~/apphome`<br/>
 > NOTE: or run `~/myepdev-env-acc/bin/install-all-ep-maven.sh ~/apphome` which will download and install all necessary maven releases on target folder, e.g `~/apphome`
 
-### configure 
+### configure
 * introduce the accelerator bashes.
 edit `~/.bash_profile`, add below line after current path setting.
 ```
@@ -72,7 +72,7 @@ source ~/myepdev-env-acc/bash/myepdev-profile.bash
 > for linux. TBD. may need change the folder of jdk installation which are hard coded in current version.
 
 * create new project with naming convention.<br/>
-for example, to develop a product contribution story PB1234 agaisnt ep 7.3, 
+for example, to develop a product contribution story PB1234 agaisnt ep 7.3,
 > PB1234 is to identify the purpose of the project <br/>
 > ep73 is to indicate the version of ep, ep here is a keyword <br/>
 > docker33730_pdmysql_ep7.3 is to indicate the project will use a mysql docker image of pdmysql:ep7.3 at port 33730 <br/>
@@ -107,7 +107,7 @@ a docker container named `PB1234_ep73_docker33730_pdmysql_ep7.3` will be launche
 run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-reset-db`
 
 ### note
-* run maven command as usual only difference is to use `mymvn` instead of `mvn` 
+* run maven command as usual only difference is to use `mymvn` instead of `mvn`
 * type `mymvn`, `myepmvn`, `mydocker` and then press tab key, should promote the list of pre defined commands.
 
 # Reference
@@ -117,6 +117,8 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 * `mymvn-debug`                equivalent to `mvnDebug`             
 * `mymvn-run-tomcat7`          equivalent to `mvn clean tomcat7:run-war`       
 * `mymvn-run-tomcat7-debug`    equivalent to `mvnDebug clean tomcat7:run-war`
+* `mymvn-run-tomcat8`          equivalent to `mvn clean tomcat7:run-war`       
+* `mymvn-run-tomcat8-debug`    equivalent to `mvnDebug clean tomcat7:run-war`
 
 ## myepmvn commands
 * `myepmvn-reset-db`         reset db
@@ -130,6 +132,17 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 * `myepmvn-run-cortex-debug` start up cortex in debug mode
 * `myepmvn-run-int-debug`    start up integration server in debug mode
 * `myepmvn-run-search-debug` start up search server in debug mode
+* `myepmvn-run-cm8`           start up cm server with tomcat 8
+* `myepmvn-run-cortex8`       start up cortex server with tomcat 8
+* `myepmvn-run-int8`          start up integration server with tomcat 8
+* `myepmvn-run-batch8`        start up batch server with tomcat 8
+* `myepmvn-run-search8`       start up search server with tomcat 8
+* `myepmvn-run-amq8`          start up active mq instance with tomcat 8
+* `myepmvn-run-cm8-debug`     start up cm server in debug mode with tomcat 8
+* `myepmvn-run-cortex8-debug` start up cortex in debug mode with tomcat 8
+* `myepmvn-run-int8-debug`    start up integration server in debug mode with tomcat 8
+* `myepmvn-run-batch8-debug`    start up batch server in debug mode with tomcat 8
+* `myepmvn-run-search8-debug` start up search server in debug mode with tomcat 8
 * `myepmvn-build-cortex`     build cortex module
 * `myepmvn-build-ext-core`   build extension core module
 
@@ -140,3 +153,5 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 * `mydocker-stop-mysql`        stop predefined mysql container
 * `mydocker-remove-mysql`      remove inactive predefined mysql container.
 * `mydocker-cleanup-container` remove all inactive mysql container
+* `mydocker-create-mysql-snapshot` create mysql snapshot image with tag name
+* `mydocker-reload-mysql`          reload mysql container from image
