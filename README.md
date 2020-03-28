@@ -155,7 +155,9 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 * `mydocker-stop`              stop predefined db container run at the docker port
 * `mydocker-remove`            remove inactive predefined db container
 * `mydocker-cleanup-container` remove all inactive mysql container
-* `mydocker-create-snapshot`   create mysql snapshot image with tag name
+* `mydocker-create-snapshot`   create snapshot image with tag name
+* `mydocker-create-snapshot-with-stop`   stop container and create snapshot image with tag name
+* `mydocker-remove-snapshot`   remove snapshot image with tag name
 * `mydocker-reload`            reload predefined image
 * `mydocker-reload-mysql`      reload predefined mysql image
 * `mydocker-reload-oracle`     reload predefined oracle image
