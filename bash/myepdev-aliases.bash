@@ -5,7 +5,7 @@ _mydocker_run_func (){
    DOCKER_IMAGE=$1
    DOCKER_CONTAINER_NAME=$3
    DOCKER_INTERNAL_PORT=${4:-3306}
-   echo "container running : from $DOCKER_IMAGE"
+   echo "running container from $DOCKER_IMAGE"
    if [[ $DOCKER_IMAGE == *"oracle"* ]]; then
       echo "This is an Oracle DB."
       DOCKER_INTERNAL_PORT=1521
@@ -14,8 +14,23 @@ _mydocker_run_func (){
 }
 
 _mydocker_create_snapshot(){
-   echo "create snapshot of docker container: $1"
-   docker commit $1 $2:snapshot_$3
+   echo "creating a snapshot image from docker container: $1"
+   TAG_NAME=${3:-default}
+   SNAPSHOT_NAME=$2:snapshot_$TAG_NAME
+   if [[ "$(docker images -q $SNAPSHOT_NAME 2> /dev/null)" == "" ]];
+   then
+     docker commit $1 $SNAPSHOT_NAME
+   else
+     echo "Image [$SNAPSHOT_NAME] exists. Please delete the image before creating a new snapshot."
+   fi
+
+}
+
+_mydocker_remove_snapshot(){
+   TAG_NAME=${2:-default}
+   SNAPSHOT_NAME=$1:snapshot_$TAG_NAME
+   echo "delating a snapshot image $SNAPSHOT_NAME"
+   docker rmi $SNAPSHOT_NAME
 }
 
 # extract inline environment variables
@@ -29,7 +44,11 @@ alias mydocker-start-oracle='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUN
 alias mydocker-start='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 
 # create snapshot from current container
+# mydocker-create-snapshot [tag-name]
 alias mydocker-create-snapshot='mydockerenv && mydocker-stop && _mydocker_create_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
+# remove snapshot from image list
+# mydocker-remove-snapshot [tag-name]
+alias mydocker-remove-snapshot='mydockerenv && _mydocker_remove_snapshot $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
 
 # stop current docker container
 alias mydocker-stop='mydockerenv && docker ps -a | grep 0.0.0.0:$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker stop {}'
