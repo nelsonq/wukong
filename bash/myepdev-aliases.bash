@@ -6,6 +6,10 @@ _mydocker_run_func (){
    DOCKER_CONTAINER_NAME=$3
    DOCKER_INTERNAL_PORT=${4:-3306}
    echo "container running : from $DOCKER_IMAGE"
+   if [[ $DOCKER_IMAGE == *"oracle"* ]]; then
+      echo "This is an Oracle DB."
+      DOCKER_INTERNAL_PORT=1521
+   fi
    docker run --name $DOCKER_CONTAINER_NAME -e TZ=America/Vancouver -e ORACLE_PWD=oracle -e MYSQL_ROOT_PASSWORD=root -p $DOCKER_HOST_PORT:$DOCKER_INTERNAL_PORT -d $DOCKER_IMAGE
 }
 
@@ -22,6 +26,7 @@ alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCO
 alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.6 $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-start-mysql='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-start-oracle='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME 1521'
+alias mydocker-start='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 
 # create snapshot from current container
 alias mydocker-create-snapshot='mydockerenv && mydocker-stop && _mydocker_create_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
@@ -38,6 +43,7 @@ alias mydocker-terminate='mydocker-stop && mydocker-remove'
 # reload docker image, any data in current container will be dropped off.
 alias mydocker-reload-mysql='mydocker-terminate && mydocker-start-mysql'
 alias mydocker-reload-oracle='mydocker-terminate && mydocker-start-oracle'
+alias mydocker-reload='mydocker-terminate && mydocker-start'
 
 # clean up any existed status container
 alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
