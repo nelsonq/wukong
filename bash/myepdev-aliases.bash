@@ -1,32 +1,49 @@
 #!/bin/sh
 MY_DOCKER_ACCOUNT=${MY_DOCKER_ACCOUNT:=nelsonqiao}
-_mydocker_run_mysql_func (){
+_mydocker_run_func (){
    DOCKER_HOST_PORT=$2
    DOCKER_IMAGE=$1
    DOCKER_CONTAINER_NAME=$3
+   DOCKER_INTERNAL_PORT=${4:-3306}
    echo "container running : from $DOCKER_IMAGE"
-   docker run --name $DOCKER_CONTAINER_NAME -e TZ=America/Vancouver -e MYSQL_ROOT_PASSWORD=root -p $DOCKER_HOST_PORT:3306 -d $DOCKER_IMAGE
+   docker run --name $DOCKER_CONTAINER_NAME -e TZ=America/Vancouver -e ORACLE_PWD=oracle -e MYSQL_ROOT_PASSWORD=root -p $DOCKER_HOST_PORT:$DOCKER_INTERNAL_PORT -d $DOCKER_IMAGE
 }
 
-_mydocker_stop_mysql_func (){
-   echo "container stopping : $DOCKER_CONTAINER_EP_MYSQL_NAME"
-   docker stop $1 && docker rm $1
-}
-_mydocker_create_mysql_snapshot(){
-   echo "create snapshot of mysql container: $1"
+_mydocker_create_snapshot(){
+   echo "create snapshot of docker container: $1"
    docker commit $1 $2:snapshot_$3
 }
+
+# extract inline environment variables
 alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker\([0-9]\{5\}\).*|\1|p'"'"')&&export MY_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/\([^/]*\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_REPO=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_\([0-9a-z]\{1,20\}\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_TAG=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_[0-9a-z]\{1,20\}_\([-0-9a-zA-Z_\.]\{1,50\}\).*|\1|p'"'"')'
-alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME'
-alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/mysql:5.6 $MY_DOCKER_PORT $MY_PROJ_NAME'
-alias mydocker-stop-mysql='mydockerenv && docker ps -a | grep 0.0.0.0:$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker stop {}' 
-alias mydocker-start-mysql='mydockerenv && _mydocker_run_mysql_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
-alias mydocker-reload-mysql='mydocker-stop-mysql && mydocker-remove-mysql && mydocker-start-mysql'
-alias mydocker-remove-mysql='mydockerenv && docker ps -a | grep docker$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker rm {}'
+
+# start container from image
+alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME'
+alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.6 $MY_DOCKER_PORT $MY_PROJ_NAME'
+alias mydocker-start-mysql='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
+alias mydocker-start-oracle='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME 1521'
+
+# create snapshot from current container
+alias mydocker-create-snapshot='mydockerenv && mydocker-stop && _mydocker_create_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
+
+# stop current docker container
+alias mydocker-stop='mydockerenv && docker ps -a | grep 0.0.0.0:$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker stop {}'
+
+# remove current docker container
+alias mydocker-remove='mydockerenv && docker ps -a | grep docker$MY_DOCKER_PORT | awk '"'"'/ / { print $1 }'"'"'| xargs -I {} docker rm {}'
+
+# stop and remove current docker container
+alias mydocker-terminate='mydocker-stop && mydocker-remove'
+
+# reload docker image, any data in current container will be dropped off.
+alias mydocker-reload-mysql='mydocker-terminate && mydocker-start-mysql'
+alias mydocker-reload-oracle='mydocker-terminate && mydocker-start-oracle'
+
+# clean up any existed status container
 alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
+
 # remove all of the dangling images, which contains <none>.
 alias mydocker-cleanup-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
-alias mydocker-create-mysql-snapshot='mydockerenv && _mydocker_create_mysql_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/mysql'
 
 # start tomcat server
 alias mymvn-run-tomcat7='mymvn clean tomcat7:run-war'
@@ -61,15 +78,15 @@ alias myepmvn-run-batch8-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-
 alias mymvn-ciskip='mymvn clean install -DskipAllTests'
 
 # maven clean all snapshot build folder to shrink and save disk space.
-alias mymvn-clean-repository='find ~/.m2 -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf' 
+alias mymvn-clean-repository='find ~/.m2 -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf'
 
 # git aliases
 alias mygit-log-oneline='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
 alias mygit-remote-add-upstream='git remote add upstream'
 
-# using this pattern base_dir + working_dir to make sure the project not under the githome still can get regular access to .m2 
-alias basemymvn='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvn -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/.m2/settings.xml -Depdb.port=$MY_DOCKER_PORT'
-alias mymvn-debug='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&MY_MVN_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/maven[0-9]\{3\}/\([^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvnDebug -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/settings.xml  -DforkMode=never -Depdb.port=$MY_DOCKER_PORT'
+# using this pattern base_dir + working_dir to make sure the project not under the githome still can get regular access to .m2
+alias basemymvn='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvn -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/.m2/settings.xml -Depdb.port=$MY_DOCKER_PORT  -P$MY_DOCKER_IMAGE_REPO-dev-db'
+alias mymvn-debug='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&MY_MVN_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/maven[0-9]\{3\}/\([^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvnDebug -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/settings.xml  -DforkMode=never -Depdb.port=$MY_DOCKER_PORT -P$MY_DOCKER_IMAGE_REPO-dev-db'
 
 # extract ep version
 # echo $PWD | sed -n 's|'"$HOME"'/Work/githome/\([^/]*\).*|\1|p'
