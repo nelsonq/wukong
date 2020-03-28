@@ -14,9 +14,9 @@ _mydocker_run_func (){
 }
 
 _mydocker_create_snapshot(){
-   echo "creating a snapshot image from docker container: $1"
    TAG_NAME=${3:-default}
    SNAPSHOT_NAME=$2:snapshot_$TAG_NAME
+   echo "creating a snapshot image [$SNAPSHOT_NAME] from docker container: [$1]"
    if [[ "$(docker images -q $SNAPSHOT_NAME 2> /dev/null)" == "" ]];
    then
      docker commit $1 $SNAPSHOT_NAME
@@ -45,7 +45,8 @@ alias mydocker-start='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_D
 
 # create snapshot from current container
 # mydocker-create-snapshot [tag-name]
-alias mydocker-create-snapshot='mydockerenv && mydocker-stop && _mydocker_create_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
+alias mydocker-create-snapshot='mydockerenv && _mydocker_create_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
+alias mydocker-create-snapshot-with-stop='mydockerenv && mydocker-stop && _mydocker_create_snapshot $MY_PROJ_NAME $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
 # remove snapshot from image list
 # mydocker-remove-snapshot [tag-name]
 alias mydocker-remove-snapshot='mydockerenv && _mydocker_remove_snapshot $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO'
