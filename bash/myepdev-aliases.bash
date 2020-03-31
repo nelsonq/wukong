@@ -39,6 +39,7 @@ alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME
 # start container from image
 alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.6 $MY_DOCKER_PORT $MY_PROJ_NAME'
+alias mydocker-start-mysql5.7rc='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.7rc $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-start-mysql='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 alias mydocker-start-oracle='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME 1521'
 alias mydocker-start='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
