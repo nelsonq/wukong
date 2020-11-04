@@ -3,20 +3,20 @@ WuKong - An Alternative Way to Accelerate EP Development Environment Setup and S
 Adopting Convention ~over~ is Configuration
 ------
 # Background
-for maven based project delivery and internal product developemnt, developers may often switch among different projects/branches, each project may even needs different maven and jdk version, which cost time and may involve mistakes. each project/branch may point to an individual data source.
+for maven based project delivery and product developemnt, developers may often switch among different projects/branches. Each project may need different maven and jdk version, which cost time and may involve mistakes. Each project/branch may need to point to an individual data source as well.
 > sharing local maven repository across different projects is risky <br/>
 > sharing data source is also risky and painful. <br/>
 
-to resolve that, typically, maven provides option to determine the settings.xml and local maven repository location. but that will be anony on typing each command with that option always.
+To resolve that, typically, maven offers option to determine the settings.xml and local maven repository location. But that is inconvinent on typing each command with that option.
 > manual configuration to run maven is painful.
 
-docker also offers the availability to start container against different ports for differnt applications. but it is also anony to specify them again and again.
+Docker technology also offers the availability to start container against different ports for differnt applications. But it is also inconvinent to specify them again and again.
 > manual configuration to run docker is painful, too.
 
-the idea way is to make all options could be automated discovered to utilize the maven and docker accross different configuration, as well as to make life easy in switching to new ad hoc task or back to in process project. and also able to retain all the data states.
+The ideal way is to make all options could be automated discovered. So developers can transparently use the maven and docker accross different configuration, as well as to make life easy in switching to new ad hoc task or back to previous WIP project. and also able to retain all the data states.
 
 # What Is It
-the basic concept is "Convention over Configuration". this accelerator contains set of predefined docker and mvn aliases and project folder naming convention to achieve that. the detail of command aliases please find in reference.
+Inspired by maven concept "Convention over Configuration". The Wukong contains set of predefined docker and mvn aliases and project folder naming convention to achieve that. The detailed of command aliases please find in reference.
 
 the naming convention is **PROJECT-NAME**\_ep**EP-VERSION**\_docker**DOCKER-PORT**\_**DOCKER-IMAGE-REPO**\_**DOCKER-IMAGE-TAG**
 * **PROJECT-NAME**, task name or id to indicate the purpose of the folder.  e.g. PB1234
@@ -52,7 +52,7 @@ now everything is clean.
 ## Setup
 ### preparation
 * clone this repo to user home directory <br/>
-run `git clone git@github.com:nelsonq/myepdev-env-acc.git` will establish folder `~/myepdev-env-acc`
+run `git clone git@github.com:nelsonq/wukong.git` will establish folder `~/wukong`
 * establish home directory for all projects <br/>
 `mkdir -p ~/Work/githome`
 * install all maven version used by ep proejcts under same folder. e.g. `~/apphome`<br/>
