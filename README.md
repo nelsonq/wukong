@@ -26,7 +26,7 @@ the naming convention is **PROJECT-NAME**\_ep**EP-VERSION**\_docker**DOCKER-PORT
 * **DOCKER-IMAGE-TAG**, the tag of the docker image
 
 for example `PB1234_ep73_docker33730_pdmysql_7.3.x` <br/>
-reading of this: here is a folder for task `PB1234`, ep code base is version `7.3`, the docker images is `$MY_DOCKER_OUNT/pdmysql:7.3.x`, and run at port `33730`.
+reading of this: here is a folder for task `PB1234`, ep code base is version `7.3`, the docker images is `$MY_DOCKER_ACCOUNT/pdmysql:7.3.x`, and run at port `33730`.
 
 # How Does It Work
 since the project folder name is composed with the necessary options for build and runtime. that means we already know all of the context.
