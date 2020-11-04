@@ -55,8 +55,8 @@ now everything is clean.
 run `git clone git@github.com:nelsonq/wukong.git` will establish folder `~/wukong`
 * establish home directory for all projects <br/>
 `mkdir -p ~/Work/githome`
-* install all maven version used by ep proejcts under same folder. e.g. `~/apphome`<br/>
-> NOTE: or run `~/myepdev-env-acc/bin/install-all-ep-maven.sh ~/apphome` which will download and install all necessary maven releases on target folder, e.g `~/apphome`
+* install all maven version used by ep projects under same folder. e.g. `~/apphome`<br/>
+> NOTE: or run `mkdir ~/apphome; ~/wukong/bin/install-all-ep-maven.sh ~/apphome` which will download and install all necessary maven releases on target folder, e.g `~/apphome`
 
 ### configure
 * introduce the accelerator bashes.
@@ -64,8 +64,8 @@ edit `~/.bash_profile`, add below line after current path setting.
 ```
 export MAVEN_INST_ROOT=~/Work/apphome
 export MY_DOCKER_ACCOUNT=
-source ~/myepdev-env-acc/bash/myepdev-aliases.bash
-source ~/myepdev-env-acc/bash/myepdev-profile.bash
+source ~/wukong/bash/myepdev-aliases.bash
+source ~/wukong/bash/myepdev-profile.bash
 ```
 > fill out the MY_DOCKER_ACCOUNT with your account name, if blank, will be using nelsonqiao instead. <br/>
 > note: if existing PATH already contains M2_HOME or JAVA_HOME, they could be removed. because of this bash will populate them. <br/>
@@ -84,7 +84,7 @@ ln -s ~/.m2/settings.xml ~/Work/githome/PB1234_ep73_docker33730_pdmysql_ep7.3/.m
 # the easy way to resuse existing settings.xml, or can be copied from somewhere else
 
 ```
-> note: or run a handy shell to establish it `~/myepdev-env-acc/bin/init-product-contribution-project.sh PB1234_ep73_docker33730_pdmysql_ep7.3`
+> note: or run a handy shell to establish it `~/wukong/bin/init-product-contribution-project.sh PB1234_ep73_docker33730_pdmysql_ep7.3`
 
 ## then done
 go into the project directory <br/>
