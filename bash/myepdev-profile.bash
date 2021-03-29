@@ -25,7 +25,9 @@ export JAVA_HOME_8U66=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents
 export JAVA_HOME_8U161=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
 export JAVA_HOME_8U144=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 # NOTE: Zulu JDK now.
-export JAVA_HOME_8U212=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+export JAVA_HOME_8U275=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+#zulu overwrites the jdk.
+#export JAVA_HOME_8U212=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
 export JAVA_HOME_7U51=/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
 export JAVA_HOME_7U79=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
 export JAVA_HOME_7U80=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home
@@ -64,10 +66,11 @@ export JAVA_HOME_EP74=$JAVA_HOME_8U144;export M2_HOME_EP74=$M2_HOME_352;export J
 export JAVA_HOME_EP75=$JAVA_HOME_8U212;export M2_HOME_EP75=$M2_HOME_352;export JAVA_OPTS_EP75=$JAVA_OPTS_8;export MAVEN_OPTS_EP75=$MAVEN_OPTS_352
 export JAVA_HOME_EP76=$JAVA_HOME_8U212;export M2_HOME_EP76=$M2_HOME_362;export JAVA_OPTS_EP76=$JAVA_OPTS_8;export MAVEN_OPTS_EP76=$MAVEN_OPTS_362
 export JAVA_HOME_EP8=$JAVA_HOME_8U212;export M2_HOME_EP8=$M2_HOME_362;export JAVA_OPTS_EP8=$JAVA_OPTS_8;export MAVEN_OPTS_EP8=$MAVEN_OPTS_362
+export JAVA_HOME_EP82=$JAVA_HOME_8U275;export M2_HOME_EP82=$M2_HOME_362;export JAVA_OPTS_EP82=$JAVA_OPTS_8;export MAVEN_OPTS_EP82=$MAVEN_OPTS_362
 
 # [check point] In case of ep commerce got new release. 
 export JAVA_HOME_EP7x=$JAVA_HOME_EP76;export M2_HOME_EP7x=$M2_HOME_EP76;export JAVA_OPTS_EP7x=$JAVA_OPTS_EP76;export MAVEN_OPTS_EP7x=$MAVEN_OPTS_EP76
-export JAVA_HOME_EP8x=$JAVA_HOME_EP8;export M2_HOME_EP8x=$M2_HOME_EP8;export JAVA_OPTS_EP8x=$JAVA_OPTS_EP8;export MAVEN_OPTS_EP8x=$MAVEN_OPTS_EP8
+export JAVA_HOME_EP8x=$JAVA_HOME_EP82;export M2_HOME_EP8x=$M2_HOME_EP82;export JAVA_OPTS_EP8x=$JAVA_OPTS_EP82;export MAVEN_OPTS_EP8x=$MAVEN_OPTS_EP82
 
 # export default configuration
 export JAVA_HOME=$JAVA_HOME_EP8x
