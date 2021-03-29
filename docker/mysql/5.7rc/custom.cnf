@@ -1,0 +1,5 @@
+[mysqld]
+# Disable row gap locking causing deadlocks at high concurrency levels
+transaction-isolation = READ-COMMITTED
+# Set timezone to UTC
+default-time-zone = "+00:00"
