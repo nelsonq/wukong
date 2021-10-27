@@ -112,7 +112,7 @@ alias mygit-log-oneline='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
 alias mygit-remote-add-upstream='git remote add upstream'
 
 # using this pattern base_dir + working_dir to make sure the project not under the githome still can get regular access to .m2
-alias basemymvn='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvn -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/.m2/settings.xml -Depdb.port=$MY_DOCKER_PORT  -P$MY_DOCKER_IMAGE_REPO-dev-db'
+alias basemymvn='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvn -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/.m2/settings.xml -Depdb.port=$MY_DOCKER_PORT -Depdb.synctarget.port=$MY_DOCKER_PORT -P$MY_DOCKER_IMAGE_REPO-dev-db'
 alias mymvn-debug='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&MY_MVN_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/maven[0-9]\{3\}/\([^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvnDebug -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/settings.xml  -DforkMode=never -Depdb.port=$MY_DOCKER_PORT -P$MY_DOCKER_IMAGE_REPO-dev-db'
 
 # extract ep version
