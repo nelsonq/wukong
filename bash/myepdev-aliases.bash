@@ -102,20 +102,21 @@ alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter 
 alias mydocker-cleanup-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
 
 # start tomcat server
-alias mymvn-run-tomcat7='mymvn clean tomcat7:run-war'
-alias mymvn-run-tomcat7-debug='mymvn-debug clean tomcat7:run-war'
 alias mymvn-run-tomcat8='mymvn clean tomcat8:run-war'
 alias mymvn-run-tomcat8-debug='mymvn-debug clean tomcat8:run-war'
-alias myepmvn-run-cortex='mymvn-run-tomcat7 -f extensions/cortex/ext-cortex-webapp/pom.xml'
-alias myepmvn-run-search='mymvn-run-tomcat7 -f extensions/search/ext-search-webapp/pom.xml'
-alias myepmvn-run-amq='mymvn-run-tomcat7 -f extensions/activemq-broker/pom.xml'
-alias myepmvn-run-cm='mymvn-run-tomcat7 -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml -Dorg.eclipse.rap.rwt.enableUITests=true'
-alias myepmvn-run-int='mymvn-run-tomcat7 -f extensions/integration/ext-integration-webapp/pom.xml'
 
-alias myepmvn-run-cortex-debug='mymvn-run-tomcat7-debug -f extensions/cortex/ext-cortex-webapp/pom.xml'
-alias myepmvn-run-search-debug='mymvn-run-tomcat7-debug -f extensions/search/ext-search-webapp/pom.xml'
-alias myepmvn-run-cm-debug='mymvn-run-tomcat7-debug -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml -Dorg.eclipse.rap.rwt.enableUITests=true'
-alias myepmvn-run-int-debug='mymvn-run-tomcat7-debug -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-run-cortex='mymvn-run-tomcat8 -f extensions/cortex/ext-cortex-webapp/pom.xml'
+alias myepmvn-run-search='mymvn-run-tomcat8 -f extensions/search/ext-search-webapp/pom.xml'
+alias myepmvn-run-amq='mymvn-run-tomcat8 -f extensions/activemq-broker/pom.xml'
+alias myepmvn-run-cm='mymvn-run-tomcat8 -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml -Dorg.eclipse.rap.rwt.enableUITests=true'
+alias myepmvn-run-int='mymvn-run-tomcat8 -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-run-batch='mymvn-run-tomcat8 -f extensions/batch/ext-batch-webapp/pom.xml'
+
+alias myepmvn-run-cortex-debug='mymvn-run-tomcat8-debug -f extensions/cortex/ext-cortex-webapp/pom.xml'
+alias myepmvn-run-search-debug='mymvn-run-tomcat8-debug -f extensions/search/ext-search-webapp/pom.xml'
+alias myepmvn-run-cm-debug='mymvn-run-tomcat8-debug -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml -Dorg.eclipse.rap.rwt.enableUITests=true'
+alias myepmvn-run-int-debug='mymvn-run-tomcat8-debug -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-run-batch-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-batch-webapp/pom.xml'
 
 alias myepmvn-run-cortex8='mymvn-run-tomcat8 -f extensions/cortex/ext-cortex-webapp/pom.xml'
 alias myepmvn-run-search8='mymvn-run-tomcat8 -f extensions/search/ext-search-webapp/pom.xml'
