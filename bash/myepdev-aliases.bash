@@ -7,7 +7,7 @@ _mydocker_run_func (){
    DOCKER_PASSWORD_ENV_FOR_ORACLE='-e ORACLE_PWD=oracle'
 
    DOCKER_INTERNAL_PORT=$DOCKER_INTERNAL_PORT_FOR_MYSQL
-   DOCKER_PASSWORD_ENV=$DOCKER_INTERNAL_PORT_FOR_MYSQL
+   DOCKER_PASSWORD_ENV=$DOCKER_PASSWORD_ENV_FOR_MYSQL
 
    DOCKER_IMAGE=$1
    DOCKER_HOST_PORT=$2
@@ -20,8 +20,24 @@ _mydocker_run_func (){
       DOCKER_INTERNAL_PORT=$DOCKER_INTERNAL_PORT_FOR_ORACCLE
       DOCKER_PASSWORD_ENV=$DOCKER_PASSWORD_ENV_FOR_ORACLE
    fi
+   echo $DOCKER_IMAGE
+   echo $DOCKER_HOST_PORT
+   echo $DOCKER_CONTAINER_NAME
    echo $OTHER_DOCKER_OPTIONS
-   docker run --name $DOCKER_CONTAINER_NAME -p $DOCKER_HOST_PORT:$DOCKER_INTERNAL_PORT  -d $DOCKER_IMAGE $OTHER_DOCKER_OPTIONS
+   echo $DOCKER_INTERNAL_PORT
+   echo $DOCKER_PASSWORD_ENV
+
+   docker run --name $DOCKER_CONTAINER_NAME -p $DOCKER_HOST_PORT:$DOCKER_INTERNAL_PORT $DOCKER_PASSWORD_ENV -d $DOCKER_IMAGE $OTHER_DOCKER_OPTIONS
+}
+# with read committed and default time zone setting
+_mydocker_run_func_mysql_rc(){
+  _mydocker_run_func $1 $2 $3 --transaction_isolation=READ-COMMITTED --default-time-zone=+00:00
+}
+_mydocker_run_func_mysql_5.7rc(){
+  _mydocker_run_func_mysql_rc mysql:5.7 $1 $2
+}
+_mydocker_run_func_mysql_8.0rc(){
+  _mydocker_run_func_mysql_rc mysql:8.0 $1 $2
 }
 
 _mydocker_create_snapshot(){
@@ -50,11 +66,10 @@ alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME
 # start container from image
 alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_func mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME --default-time-zone=+00:00'
 alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.6 $MY_DOCKER_PORT $MY_PROJ_NAME'
-alias mydocker-start-mysql5.7rc='mydockerenv && _mydocker_run_func mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME --transaction_isolation=READ-COMMITTED --default-time-zone=+00:00'
-alias mydocker-start-mysql8.0rc='mydockerenv && _mydocker_run_func mysql:8.0 $MY_DOCKER_PORT $MY_PROJ_NAME --transaction_isolation=READ-COMMITTED --default-time-zone=+00:00'
-alias mydocker-start-mysql='mydockerenv && mydocker-start-mysql$MY_DOCKER_IMAGE_TAG'
+
 alias mydocker-start-oracle='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME 1521'
-alias mydocker-start='mydockerenv && mydocker-start-$MY_DOCKER_IMAGE_REPO$MY_DOCKER_IMAGE_TAG'
+
+alias mydocker-start='mydockerenv && _mydocker_run_func_$MY_DOCKER_IMAGE_REPO_$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 
 # create snapshot from current container
 # mydocker-create-snapshot [tag-name]
