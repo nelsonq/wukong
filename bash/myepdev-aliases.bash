@@ -33,10 +33,10 @@ _mydocker_run_func (){
 _mydocker_run_func_mysql_rc(){
   _mydocker_run_func $1 $2 $3 --transaction_isolation=READ-COMMITTED --default-time-zone=+00:00
 }
-_mydocker_run_func_mysql_5.7rc(){
+_mydocker_run_func_mysql5.7rc(){
   _mydocker_run_func_mysql_rc mysql:5.7 $1 $2
 }
-_mydocker_run_func_mysql_8.0rc(){
+_mydocker_run_func_mysql8.0rc(){
   _mydocker_run_func_mysql_rc mysql:8.0 $1 $2
 }
 
@@ -69,7 +69,7 @@ alias mydocker-start-mysql5.6='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCO
 
 alias mydocker-start-oracle='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/$MY_DOCKER_IMAGE_REPO:$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME 1521'
 
-alias mydocker-start='mydockerenv && _mydocker_run_func_$MY_DOCKER_IMAGE_REPO_$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
+alias mydocker-start='mydockerenv && _mydocker_run_func_$MY_DOCKER_IMAGE_REPO$MY_DOCKER_IMAGE_TAG $MY_DOCKER_PORT $MY_PROJ_NAME'
 
 # create snapshot from current container
 # mydocker-create-snapshot [tag-name]
@@ -89,10 +89,12 @@ alias mydocker-remove='mydockerenv && docker ps -a | grep docker$MY_DOCKER_PORT 
 alias mydocker-terminate='mydocker-stop && mydocker-remove'
 
 # reload docker image, any data in current container will be dropped off.
-alias mydocker-reload-mysql='mydocker-terminate && mydocker-start-mysql'
 alias mydocker-reload-oracle='mydocker-terminate && mydocker-start-oracle'
 alias mydocker-reload='mydocker-terminate && mydocker-start'
 
+# show log of current container
+alias mydocker-logs='mydockerenv && docker logs $MY_PROJ_NAME'
+alias mydocker-logs-follow='mydockerenv && docker logs -f $MY_PROJ_NAME'
 # clean up any existed status container
 alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter "status=exited")'
 
