@@ -34,7 +34,7 @@ _mydocker_remove_snapshot(){
 }
 
 # extract inline environment variables
-alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker\([0-9]\{5\}\).*|\1|p'"'"')&&export MY_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/\([^/]*\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_REPO=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_\([0-9a-z]\{1,20\}\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_TAG=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{5\}_[0-9a-z]\{1,20\}_\([-0-9a-zA-Z_\.]\{1,50\}\).*|\1|p'"'"')'
+alias mydockerenv='export MY_DOCKER_PORT=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker\([0-9]\{4,5\}\).*|\1|p'"'"')&&export MY_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/\([^/]*\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_REPO=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{4,5\}_\([0-9a-z]\{1,20\}\).*|\1|p'"'"')&&export MY_DOCKER_IMAGE_TAG=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_docker[0-9]\{4,5\}_[0-9a-z]\{1,20\}_\([-0-9a-zA-Z_\.]\{1,50\}\).*|\1|p'"'"')'
 
 # start container from image
 alias mydocker-start-mysql5.7='mydockerenv && _mydocker_run_func $MY_DOCKER_ACCOUNT/mysql:5.7 $MY_DOCKER_PORT $MY_PROJ_NAME'
