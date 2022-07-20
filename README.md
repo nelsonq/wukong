@@ -143,6 +143,8 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 * `myepmvn-run-search8-debug` start up search server in debug mode with tomcat 8
 * `myepmvn-build-cortex`     build cortex module
 * `myepmvn-build-ext-core`   build extension core module
+* `myepmvn-selenium`           verify remote selenium tests
+* `myepmvn-selenium-cm-ext-cm-modules` verify remote selenium tests on cm/ext-cm-modules
 
 ## mydocker commands
 * `mydocker-start`             start predefined container.
