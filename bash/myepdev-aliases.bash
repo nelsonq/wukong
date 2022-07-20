@@ -151,6 +151,11 @@ alias mymvn='export MY_EP_VERSION=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/
 
 alias mydocker-run-jenkins="docker run -u root --name myjenkinsci --rm -d -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock nelsonqiao/myjenkinsci"
 
+# testing ep related mvn command
+# host.docker.internal is only work with mac. Linux uses another way.
+alias myepmvn-selenium='mymvn clean verify -Dselenium.session.browser=remote_chrome -Dremote.web.driver.url=http://localhost:4444/wd/hub -Dselenium.session.baseurl=http://host.docker.internal:8081/cm '
+alias myepmvn-selenium-cm-ext-cm-modules='myepmvn-selenium -f extensions/cm/ext-cm-modules/system-tests/selenium/pom.xml '
+
 # other ep related mvn command.
 alias myepmvn-update-db='mymvn clean package -Pupdate-db -f extensions/database/pom.xml'
 alias myepmvn-reset-db='mymvn clean package -Preset-db -f extensions/database/pom.xml'
