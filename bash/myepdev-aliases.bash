@@ -101,6 +101,16 @@ alias mydocker-cleanup-container='docker rm $(docker ps -qa --no-trunc --filter 
 # remove all of the dangling images, which contains <none>.
 alias mydocker-cleanup-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
 
+# run selenium standalone docker container
+alias mydocker-run-selenium-standalone-3.141.59-20200525="docker run -d \
+-p 4444:4444 \
+-p 5900:5900 \
+-e SCREEN_WIDTH=1920 \
+-e SCREEN_HEIGHT=1080 \
+-e SCREEN_DEPTH=24 \
+--shm-size=2g \
+selenium/standalone-chrome-debug:3.141.59-20200525"
+
 # start tomcat server
 alias mymvn-run-tomcat8='mymvn clean tomcat8:run-war'
 alias mymvn-run-tomcat8-debug='mymvn-debug clean tomcat8:run-war'
