@@ -162,3 +162,4 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 * `mydocker-reload-oracle`     reload predefined oracle image
 * `mydocker-logs`              show logs of current container
 * `mydocker-logs-follow`       show logs of current container with follow option
+* `mydocker-run-selenium-standalone-3.141.59-20200525` run selenium standalone docker container with version 3.141.59-20200525
