@@ -12,7 +12,7 @@ export M2_HOME_305=$MAVEN_INST_ROOT/apache-maven-3.0.5
 # MAVEN_OPTS configuration
 # [check point] In case of maven option got upgrade.
 export MAVEN_OPTS_305='-Xmx1024m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true -ea'
-export MAVEN_OPTS_339='-Xmx2048m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true -agentpath:/Applications/YourKit-Java-Profiler.app/Contents/Resources/bin/mac/libyjpagent.dylib '
+export MAVEN_OPTS_339='-Xmx2048m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true '
 export MAVEN_OPTS_352=$MAVEN_OPTS_339
 export MAVEN_OPTS_354=$MAVEN_OPTS_352
 export MAVEN_OPTS_362=$MAVEN_OPTS_354
@@ -25,7 +25,7 @@ export JAVA_HOME_8U66=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents
 export JAVA_HOME_8U161=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
 export JAVA_HOME_8U144=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 # NOTE: Zulu JDK now.
-export JAVA_HOME_8U275=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
+export JAVA_HOME_8U275=~/Work/apphome/jdk8u275
 #zulu overwrites the jdk.
 #export JAVA_HOME_8U212=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
 export JAVA_HOME_7U51=/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
