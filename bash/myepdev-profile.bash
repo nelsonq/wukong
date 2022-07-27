@@ -1,5 +1,7 @@
 #!/bin/sh
 export MAVEN_INST_ROOT=${MAVEN_INST_ROOT:=~/apphome}
+# platform for docker linux/x86_64 or linux/arm64/v8. should be overridden in .bash_profile
+export ENV_DOCKER_PLATFORM=linux/x86_64
 
 # M2_HOME configuration
 # [check point] In case of maven got upgrade.
@@ -68,7 +70,7 @@ export JAVA_HOME_EP76=$JAVA_HOME_8U212;export M2_HOME_EP76=$M2_HOME_362;export J
 export JAVA_HOME_EP8=$JAVA_HOME_8U212;export M2_HOME_EP8=$M2_HOME_362;export JAVA_OPTS_EP8=$JAVA_OPTS_8;export MAVEN_OPTS_EP8=$MAVEN_OPTS_362
 export JAVA_HOME_EP82=$JAVA_HOME_8U275;export M2_HOME_EP82=$M2_HOME_362;export JAVA_OPTS_EP82=$JAVA_OPTS_8;export MAVEN_OPTS_EP82=$MAVEN_OPTS_362
 
-# [check point] In case of ep commerce got new release. 
+# [check point] In case of ep commerce got new release.
 export JAVA_HOME_EP7x=$JAVA_HOME_EP76;export M2_HOME_EP7x=$M2_HOME_EP76;export JAVA_OPTS_EP7x=$JAVA_OPTS_EP76;export MAVEN_OPTS_EP7x=$MAVEN_OPTS_EP76
 export JAVA_HOME_EP8x=$JAVA_HOME_EP82;export M2_HOME_EP8x=$M2_HOME_EP82;export JAVA_OPTS_EP8x=$JAVA_OPTS_EP82;export MAVEN_OPTS_EP8x=$MAVEN_OPTS_EP82
 

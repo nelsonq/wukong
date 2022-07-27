@@ -71,6 +71,11 @@ source ~/wukong/bash/myepdev-profile.bash
 > note: if existing PATH already contains M2_HOME or JAVA_HOME, they could be removed. because of this bash will populate them. <br/>
 > for linux. TBD. may need change the folder of jdk installation which are hard coded in current version.
 
+* override ENV_DOCKER_PLATFORM in case of on different hardware platform, e.g. apple arm64
+```
+export ENV_DOCKER_PLATFORM=linux/arm64/v8
+```
+
 * create new project with naming convention.<br/>
 for example, to develop a product contribution story PB1234 agaisnt ep 7.3,
 > PB1234 is to identify the purpose of the project <br/>
