@@ -71,9 +71,10 @@ source ~/wukong/bash/myepdev-profile.bash
 > note: if existing PATH already contains M2_HOME or JAVA_HOME, they could be removed. because of this bash will populate them. <br/>
 > for linux. TBD. may need change the folder of jdk installation which are hard coded in current version.
 
-* override ENV_DOCKER_PLATFORM in case of on different hardware platform, e.g. apple arm64
+* override DOCKER_DEFAULT_PLATFORM in case of on different hardware platform, e.g. for apple m1 we could use linux/arm64/v8
+* https://docs.docker.com/engine/reference/commandline/cli/
 ```
-export ENV_DOCKER_PLATFORM=linux/arm64/v8
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 ```
 
 * create new project with naming convention.<br/>
