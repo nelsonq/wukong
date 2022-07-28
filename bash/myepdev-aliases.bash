@@ -20,7 +20,7 @@ _mydocker_run_func (){
       DOCKER_INTERNAL_PORT=$DOCKER_INTERNAL_PORT_FOR_ORACCLE
       DOCKER_PASSWORD_ENV=$DOCKER_PASSWORD_ENV_FOR_ORACLE
    fi
-   echo $ENV_DOCKER_PLATFORM
+   echo $DOCKER_DEFAULT_PLATFORM
    echo $DOCKER_IMAGE
    echo $DOCKER_HOST_PORT
    echo $DOCKER_CONTAINER_NAME
@@ -28,7 +28,7 @@ _mydocker_run_func (){
    echo $DOCKER_INTERNAL_PORT
    echo $DOCKER_PASSWORD_ENV
    set -x
-   docker run --platform $ENV_DOCKER_PLATFORM --name $DOCKER_CONTAINER_NAME -p $DOCKER_HOST_PORT:$DOCKER_INTERNAL_PORT $(echo $DOCKER_PASSWORD_ENV) -d $(echo $DOCKER_IMAGE $OTHER_DOCKER_OPTIONS)
+   docker run --platform $DOCKER_DEFAULT_PLATFORM --name $DOCKER_CONTAINER_NAME -p $DOCKER_HOST_PORT:$DOCKER_INTERNAL_PORT $(echo $DOCKER_PASSWORD_ENV) -d $(echo $DOCKER_IMAGE $OTHER_DOCKER_OPTIONS)
 }
 # with read committed and default time zone setting
 _mydocker_run_func_mysql_rc(){
