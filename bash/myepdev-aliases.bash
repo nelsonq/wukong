@@ -113,8 +113,8 @@ alias mydocker-run-selenium-standalone-3.141.59-20200525="docker run -d \
 selenium/standalone-chrome-debug:3.141.59-20200525"
 
 # start tomcat server
-alias mymvn-run-tomcat8='mymvn clean tomcat8:run-war'
-alias mymvn-run-tomcat8-debug='mymvn-debug clean tomcat8:run-war'
+alias mymvn-run-tomcat8='mymvn clean tomcat8:run-war -nsu '
+alias mymvn-run-tomcat8-debug='mymvn-debug clean tomcat8:run-war -nsu '
 
 alias myepmvn-run-cortex='mymvn-run-tomcat8 -f extensions/cortex/ext-cortex-webapp/pom.xml'
 alias myepmvn-run-search='mymvn-run-tomcat8 -f extensions/search/ext-search-webapp/pom.xml'
