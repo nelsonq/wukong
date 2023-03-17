@@ -15,7 +15,7 @@ export M2_HOME_305=$MAVEN_INST_ROOT/apache-maven-3.0.5
 # [check point] In case of maven option got upgrade.
 export MAVEN_OPTS_305='-Xmx1024m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true -ea'
 export MAVEN_OPTS_339='-Xmx2048m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true '
-export MAVEN_OPTS_339_MULTITHREADED='-Xmx6000m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true '
+export MAVEN_OPTS_339_MULTITHREADED='-Xmx4000m -XX:ReservedCodeCacheSize=128m -Dsun.lang.ClassLoader.allowArraySyntax=true '
 export MAVEN_OPTS_352=$MAVEN_OPTS_339_MULTITHREADED
 export MAVEN_OPTS_354=$MAVEN_OPTS_352
 export MAVEN_OPTS_362=$MAVEN_OPTS_354
