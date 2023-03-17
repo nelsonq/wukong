@@ -144,6 +144,8 @@ alias myepmvn-run-batch8-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-
 
 # maven clean and build
 alias mymvn-ciskip='mymvn clean install -DskipAllTests'
+alias mymvn-ciskip-multithreaded='mymvn clean install -T 0.75C -DskipAllTests -pl -:cm-parent,-:ext-cm-parent,-:ext-cm-repository,-:webapp-smoketests && \
+mymvn clean install -T 1 -DskipAllTests -pl :cm-parent,:ext-cm-parent,:ext-cm-repository,:webapp-smoketests'
 
 # maven clean all snapshot build folder to shrink and save disk space.
 alias mymvn-clean-repository='find ~/.m2 -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf'
