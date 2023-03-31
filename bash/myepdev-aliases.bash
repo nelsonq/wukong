@@ -142,8 +142,9 @@ alias myepmvn-run-cm8-debug='mymvn-run-tomcat8-debug -f extensions/cm/ext-cm-mod
 alias myepmvn-run-int8-debug='mymvn-run-tomcat8-debug -f extensions/integration/ext-integration-webapp/pom.xml'
 alias myepmvn-run-batch8-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-batch-webapp/pom.xml'
 
-alias myepmvn-ciskip-mt='mymvn clean install -T 0.75C -DskipAllTests -pl -:cm-parent,-:ext-cm-parent,-:ext-cm-repository,-:webapp-smoketests && \
-mymvn clean install -T 1 -DskipAllTests -pl :cm-parent,:ext-cm-parent,:ext-cm-repository,:webapp-smoketests'
+alias myepmvn-ciskip-cm-excluded-mt='mymvn clean install -T 0.75C -DskipAllTests -pl -:cm-parent,-:ext-cm-parent,-:ext-cm-repository,-:webapp-smoketests'
+alias myepmvn-ciskip-cm-only-st='mymvn clean install -T 1 -DskipAllTests -pl :cm-parent,:ext-cm-parent,:ext-cm-repository,:webapp-smoketests'
+alias myepmvn-ciskip-mt='myepmvn-ciskip-cm-excluded-mt && myepmvn-ciskip-cm-only-st'
 
 alias myepmvn-gooffline='mymvn dependency:go-offline -DincludeScope=compile -fn || true'
 
