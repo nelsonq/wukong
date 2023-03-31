@@ -145,6 +145,8 @@ alias myepmvn-run-batch8-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-
 alias myepmvn-ciskip-mt='mymvn clean install -T 0.75C -DskipAllTests -pl -:cm-parent,-:ext-cm-parent,-:ext-cm-repository,-:webapp-smoketests && \
 mymvn clean install -T 1 -DskipAllTests -pl :cm-parent,:ext-cm-parent,:ext-cm-repository,:webapp-smoketests'
 
+alias myepmvn-gooffline='mymvn dependency:go-offline -DincludeScope=compile -fn || true'
+
 # maven clean and build
 alias mymvn-ciskip='mymvn clean install -DskipAllTests'
 
