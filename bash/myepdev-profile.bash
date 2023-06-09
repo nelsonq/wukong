@@ -5,6 +5,7 @@ export ENV_DOCKER_PLATFORM=linux/x86_64
 
 # M2_HOME configuration
 # [check point] In case of maven got upgrade.
+export M2_HOME_391=$MAVEN_INST_ROOT/apache-maven-3.9.1
 export M2_HOME_390=$MAVEN_INST_ROOT/apache-maven-3.9.0
 export M2_HOME_362=$MAVEN_INST_ROOT/apache-maven-3.6.2
 export M2_HOME_354=$MAVEN_INST_ROOT/apache-maven-3.5.4
@@ -13,7 +14,7 @@ export M2_HOME_339=$MAVEN_INST_ROOT/apache-maven-3.3.9
 export M2_HOME_305=$MAVEN_INST_ROOT/apache-maven-3.0.5
 
 # Latest maven home
-export M2_HOME_3x=$M2_HOME_390
+export M2_HOME_3x=$M2_HOME_391
 
 # MAVEN_OPTS configuration
 # [check point] In case of maven option got upgrade.
@@ -24,9 +25,10 @@ export MAVEN_OPTS_352=$MAVEN_OPTS_339_MULTITHREADED
 export MAVEN_OPTS_354=$MAVEN_OPTS_352
 export MAVEN_OPTS_362=$MAVEN_OPTS_354
 export MAVEN_OPTS_390=$MAVEN_OPTS_362
+export MAVEN_OPTS_391=$MAVEN_OPTS_362
 
 # Latest maven options
-export MAVEN_OPTS_3x=$MAVEN_OPTS_390
+export MAVEN_OPTS_3x=$MAVEN_OPTS_391
 
 # JAVA_HOME configuration
 # [check point] In case of jdk got upgrade.
@@ -37,6 +39,7 @@ export JAVA_HOME_8U161=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Conten
 export JAVA_HOME_8U144=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 # NOTE: Zulu JDK now.
 export JAVA_HOME_8U275=~/Work/apphome/jdk8u275
+export JAVA_HOME_11=~/Work/apphome/jdk11
 
 #zulu overwrites the jdk.
 #export JAVA_HOME_8U212=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
@@ -56,9 +59,11 @@ fi
 # UPDATE default JAVA_HOME per java major release.
 export JAVA_HOME_7x=$JAVA_HOME_7U79
 export JAVA_HOME_8x=$JAVA_HOME_8U275
+export JAVA_HOME_11x=$JAVA_HOME_11
 
 # JAVA_OPTS configuration
 # ===============================
+export JAVA_OPTS_11x='-Xmx1024m -Dsun.lang.ClassLoader.allowArraySyntax=true'
 export JAVA_OPTS_8x='-Xmx1024m -Dsun.lang.ClassLoader.allowArraySyntax=true'
 export JAVA_OPTS_7x='-Xmx1024m -XX:MaxPermSize=512m -Dsun.lang.ClassLoader.allowArraySyntax=true'
 # ==============================
@@ -79,6 +84,7 @@ export JAVA_HOME_EP75=$JAVA_HOME_8U212;export M2_HOME_EP75=$M2_HOME_352;export J
 export JAVA_HOME_EP76=$JAVA_HOME_8U212;export M2_HOME_EP76=$M2_HOME_362;export JAVA_OPTS_EP76=$JAVA_OPTS_8x;export MAVEN_OPTS_EP76=$MAVEN_OPTS_362
 export JAVA_HOME_EP8=$JAVA_HOME_8U212;export M2_HOME_EP8=$M2_HOME_362;export JAVA_OPTS_EP8=$JAVA_OPTS_8x;export MAVEN_OPTS_EP8=$MAVEN_OPTS_362
 export JAVA_HOME_EP82=$JAVA_HOME_8U275;export M2_HOME_EP82=$M2_HOME_362;export JAVA_OPTS_EP82=$JAVA_OPTS_8x;export MAVEN_OPTS_EP82=$MAVEN_OPTS_362
+export JAVA_HOME_EP85=$JAVA_HOME_11;export M2_HOME_EP85=$M2_HOME_391;export JAVA_OPTS_EP85=$JAVA_OPTS_11x;export MAVEN_OPTS_EP85=$MAVEN_OPTS_391
 
 # [check point] In case of ep commerce got new release.
 export JAVA_HOME_EP7x=$JAVA_HOME_7x;export M2_HOME_EP7x=$M2_HOME_3x;export JAVA_OPTS_EP7x=$JAVA_OPTS_7x;export MAVEN_OPTS_EP7x=$MAVEN_OPTS_3x
