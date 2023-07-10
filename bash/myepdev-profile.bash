@@ -91,7 +91,7 @@ export JAVA_HOME_EP7x=$JAVA_HOME_7x;export M2_HOME_EP7x=$M2_HOME_3x;export JAVA_
 export JAVA_HOME_EP8x=$JAVA_HOME_8x;export M2_HOME_EP8x=$M2_HOME_3x;export JAVA_OPTS_EP8x=$JAVA_OPTS_8x;export MAVEN_OPTS_EP8x=$MAVEN_OPTS_3x
 
 # export default configuration
-export JAVA_HOME=$JAVA_HOME_EP8x
+# export JAVA_HOME=$JAVA_HOME_EP8x removing to allow jenv work
 export M2_HOME=$M2_HOME_EP8x
 export JAVA_OPTS=$JAVA_OPTS_EP8x
 export MAVEN_OPTS=$MAVEN_OPTS_EP8x
@@ -99,4 +99,4 @@ export MAVEN_OPTS=$MAVEN_OPTS_EP8x
 # don't think this one is necessary. somehow it is here.
 #export JAVA_TOOL_OPTIONS="-Xmx4096m -Xms512m -Dfile.encoding=UTF-8"
 
-export PATH=~/bin:$M2_HOME/bin:$JAVA_HOME/bin:$PATH:
+export PATH=~/bin:$M2_HOME/bin:$PATH:
