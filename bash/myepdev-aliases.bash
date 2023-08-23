@@ -150,6 +150,10 @@ alias myepmvn-gooffline='mymvn dependency:go-offline -DincludeScope=compile -fn 
 
 # maven clean and build
 alias mymvn-ciskip='mymvn clean install -DskipAllTests'
+alias mymvn-ciskip-mt='mymvn-ciskip -T 0.5C'
+alias mymvn-ciskip-mt6='mymvn-ciskip -T 6'
+alias mymvn-ciskip-mt4='mymvn-ciskip -T 4'
+alias mymvn-ciskip-mt2='mymvn-ciskip -T 2'
 
 # maven clean all snapshot build folder to shrink and save disk space.
 alias mymvn-clean-repository='find ~/.m2 -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf'
