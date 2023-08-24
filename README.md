@@ -120,6 +120,10 @@ run `mymvn clean package -Preset-db -f extensions/database/pom.xml` or `myepmvn-
 ## mymvn commands
 * `mymvn`                      equivalent to `mvn`
 * `mymvn-ciskip`               equivalent to `mvn clean install -DskipAllTests`      
+* `mymvn-ciskip-mt`            equivalent to `mvn clean install -DskipAllTests -T 0.5C`
+* `mymvn-ciskip-mt6`            equivalent to `mvn clean install -DskipAllTests -T 6`
+* `mymvn-ciskip-mt4`            equivalent to `mvn clean install -DskipAllTests -T 4`
+* `mymvn-ciskip-mt2`            equivalent to `mvn clean install -DskipAllTests -T 2`
 * `mymvn-debug`                equivalent to `mvnDebug`             
 * `mymvn-run-tomcat8`          equivalent to `mvn clean tomcat8:run-war`       
 * `mymvn-run-tomcat8-debug`    equivalent to `mvnDebug clean tomcat8:run-war`
