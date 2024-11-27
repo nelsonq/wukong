@@ -155,6 +155,8 @@ alias mymvn-ciskip-mt6='mymvn-ciskip -T 6'
 alias mymvn-ciskip-mt4='mymvn-ciskip -T 4'
 alias mymvn-ciskip-mt2='mymvn-ciskip -T 2'
 
+alias mymvnmin-ciskip-all='mymvnmin clean install -DskipAllTests --all'
+
 # maven clean all snapshot build folder to shrink and save disk space.
 alias mymvn-clean-repository='find ~/.m2 -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf'
 
@@ -164,6 +166,7 @@ alias mygit-remote-add-upstream='git remote add upstream'
 
 # using this pattern base_dir + working_dir to make sure the project not under the githome still can get regular access to .m2
 alias basemymvn='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvn -nsu -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/.m2/settings.xml -Depdb.port=$MY_DOCKER_PORT -Depdb.synctarget.port=$MY_DOCKER_PORT -P$MY_DOCKER_IMAGE_REPO-dev-db'
+alias basemymvnmin='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&mvnmin -nsu -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/.m2/settings.xml -Depdb.port=$MY_DOCKER_PORT -Depdb.synctarget.port=$MY_DOCKER_PORT -P$MY_DOCKER_IMAGE_REPO-dev-db'
 alias mymvn-debug='mydockerenv&&MY_MVN_PROJ_PATH=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'\(/Work/githome/[^/]*\).*|\1|p'"'"')&&MY_MVN_PROJ_NAME=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/maven[0-9]\{3\}/\([^/]*\).*|\1|p'"'"')&&$M2_HOME/bin/mvnDebug -nsu -Dmaven.repo.local=$HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/repository -s $HOME/$MY_MVN_PROJ_PATH/$MY_MVN_PROJ_NAME/.m2/settings.xml  -DforkMode=never -Depdb.port=$MY_DOCKER_PORT -P$MY_DOCKER_IMAGE_REPO-dev-db'
 
 # extract ep version
@@ -173,6 +176,12 @@ alias mymvn='export MY_EP_VERSION=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/
              && export MAVEN_OPTS=$(printenv MAVEN_OPTS_EP$(echo $MY_EP_VERSION)) \
              && export JAVA_OPTS=$(printenv JAVA_OPTS_EP$(echo $MY_EP_VERSION)) \
              && basemymvn'
+
+alias mymvnmin='export MY_EP_VERSION=$(echo $PWD | sed -n '"'"'s|'"'"'"$HOME"'"'"'/Work/githome/[^/^_].*_ep\([0-9]\{1,10\}[x]\{0,1\}\)_.*|\1|p'"'"') \
+             && export M2_HOME=$(printenv M2_HOME_EP$(echo $MY_EP_VERSION)) \
+             && export MAVEN_OPTS=$(printenv MAVEN_OPTS_EP$(echo $MY_EP_VERSION)) \
+             && export JAVA_OPTS=$(printenv JAVA_OPTS_EP$(echo $MY_EP_VERSION)) \
+             && basemymvnmin'
 
 alias mydocker-run-jenkins="docker run -u root --name myjenkinsci --rm -d -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock nelsonqiao/myjenkinsci"
 
