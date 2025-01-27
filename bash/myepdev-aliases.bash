@@ -142,6 +142,18 @@ alias myepmvn-run-cm8-debug='mymvn-run-tomcat8-debug -f extensions/cm/ext-cm-mod
 alias myepmvn-run-int8-debug='mymvn-run-tomcat8-debug -f extensions/integration/ext-integration-webapp/pom.xml'
 alias myepmvn-run-batch8-debug='mymvn-run-tomcat8-debug -f extensions/batch/ext-batch-webapp/pom.xml'
 
+alias mymvn-cargorun='mymvn cargo:run -nsu '
+alias mymvn-cargorun-debug='mymvn-cargorun -Ddebug'
+alias myepmvn-cargorun-cortex='mymvn-cargorun -f extensions/cortex/ext-cortex-webapp/pom.xml'
+alias myepmvn-cargorun-amq='mymvn-cargorun -f extensions/activemq-broker/pom.xml'
+alias myepmvn-cargorun-batch='mymvn-cargorun -f extensions/batch/ext-batch-webapp/pom.xml'
+alias myepmvn-cargorun-cm='mymvn-cargorun -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml'
+alias myepmvn-cargorun-int='mymvn-cargorun -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-cargorun-search='mymvn-cargorun -f extensions/search/ext-search-webapp/pom.xml'
+alias myepmvn-cargorun-sync='mymvn-cargorun -f extensions/sync/ext-sync-webapp/pom.xml'
+
+alias myepmvn-cargorun-cortex-debug='mymvn-cargorun-debug -f extensions/cortex/ext-cortex-webapp/pom.xml'
+
 alias myepmvn-ciskip-cm-excluded-mt='mymvn clean install -T 0.75C -DskipAllTests -pl -:cm-parent,-:ext-cm-parent,-:ext-cm-repository,-:webapp-smoketests'
 alias myepmvn-ciskip-cm-only-st='mymvn clean install -T 1 -DskipAllTests -pl :cm-parent,:ext-cm-parent,:ext-cm-repository,:webapp-smoketests'
 alias myepmvn-ciskip-mt='myepmvn-ciskip-cm-excluded-mt && myepmvn-ciskip-cm-only-st'
