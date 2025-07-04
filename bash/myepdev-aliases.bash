@@ -147,10 +147,22 @@ alias mymvn-cargorun-debug='mymvn-cargorun -Ddebug'
 alias myepmvn-cargorun-cortex='mymvn-cargorun -f extensions/cortex/ext-cortex-webapp/pom.xml'
 alias myepmvn-cargorun-amq='mymvn-cargorun -f extensions/activemq-broker/pom.xml'
 alias myepmvn-cargorun-batch='mymvn-cargorun -f extensions/batch/ext-batch-webapp/pom.xml'
-alias myepmvn-cargorun-cm='mymvn-cargorun -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml'
+alias myepmvn-cargorun-cmrunner='mymvn-cargorun -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml'
+alias myepmvn-cargorun-cmweb='mymvn-cargorun -f extensions/cm/ext-cm-modules/ext-cm-webapp/pom.xml'
 alias myepmvn-cargorun-int='mymvn-cargorun -f extensions/integration/ext-integration-webapp/pom.xml'
 alias myepmvn-cargorun-search='mymvn-cargorun -f extensions/search/ext-search-webapp/pom.xml'
 alias myepmvn-cargorun-sync='mymvn-cargorun -f extensions/sync/ext-sync-webapp/pom.xml'
+
+alias mymvn-cp-cargorun='mymvn clean package cargo:run -nsu '
+# alias mymvn-cp-cargorun-debug='mymvn-cp-cargorun -Ddebug' I dont think build is necessary for debug
+alias myepmvn-cp-cargorun-cortex='mymvn-cp-cargorun -f extensions/cortex/ext-cortex-webapp/pom.xml'
+alias myepmvn-cp-cargorun-amq='mymvn-cp-cargorun -f extensions/activemq-broker/pom.xml'
+alias myepmvn-cp-cargorun-batch='mymvn-cp-cargorun -f extensions/batch/ext-batch-webapp/pom.xml'
+alias myepmvn-cp-cargorun-cmrunner='mymvn-cp-cargorun -f extensions/cm/ext-cm-modules/ext-cm-webapp-runner/pom.xml'
+alias myepmvn-cp-cargorun-cmweb='mymvn-cp-cargorun -f extensions/cm/ext-cm-modules/ext-cm-webapp/pom.xml'
+alias myepmvn-cp-cargorun-int='mymvn-cp-cargorun -f extensions/integration/ext-integration-webapp/pom.xml'
+alias myepmvn-cp-cargorun-search='mymvn-cp-cargorun -f extensions/search/ext-search-webapp/pom.xml'
+alias myepmvn-cp-cargorun-sync='mymvn-cp-cargorun -f extensions/sync/ext-sync-webapp/pom.xml'
 
 alias myepmvn-cargorun-cortex-debug='mymvn-cargorun-debug -f extensions/cortex/ext-cortex-webapp/pom.xml'
 
