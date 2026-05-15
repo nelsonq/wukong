@@ -179,6 +179,16 @@ alias mymvn-ciskip-mt6='mymvn-ciskip -T 6'
 alias mymvn-ciskip-mt4='mymvn-ciskip -T 4'
 alias mymvn-ciskip-mt2='mymvn-ciskip -T 2'
 
+# maven clean and build with snapshot api-platform
+alias mymvn-with-snapshot-api-platform-ciskip='mymvn-ciskip -Pwith-snapshot-api-platform'
+alias mymvn-with-snapshot-api-platform-ciskip-mt='mymvn-with-snapshot-api-platform-ciskip -T 0.5C'
+
+# start cortex with snapshot api-platform
+alias myepmvn-with-snapshot-api-platform-cargorun-cortex='mymvn-cargorun -f extensions/cortex/ext-cortex-webapp/pom.xml -Pwith-snapshot-api-platform'
+
+alias myepmvn-assembly-validate='mymvn clean install -f devops/jenkins/ep-assembly-enforcer -Dep-assembly-enforcer.validate'
+alias myepmvn-assembly-reset='mymvn clean install -f devops/jenkins/ep-assembly-enforcer -Dep-assembly-enforcer.reset'
+
 # maven clean all snapshot build folder to shrink and save disk space.
 alias mymvn-clean-repository='find ~/.m2 -name \*SNAPSHOT -type d -print0 | xargs -0 rm -rf'
 
